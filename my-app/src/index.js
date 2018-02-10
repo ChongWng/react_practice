@@ -23,6 +23,16 @@ import './index.css';
 // }
 
 //Do not need to have a construtor for mutative state
+// eslint-disable-next-line
+// var Square = ReactDom.createClass({
+//   render: function(props){
+//     return(
+//       <button className="square" onClick={props.onClick}>
+//         {props.value}
+//       </button>
+//     );
+//   }
+// });
 function Square(props) {
   return (
     <button className="square" onClick={props.onClick}>
@@ -113,6 +123,7 @@ class Game extends React.Component {
     const winner = calculateWinner(currentGame.squares);
 
     const moves = history.map((step, move) => {
+      //console.log(this);
       const desc = move ?
         'Go to move #' + move :
         'Go to game start';
