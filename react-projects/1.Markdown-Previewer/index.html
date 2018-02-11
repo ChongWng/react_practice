@@ -1,17 +1,68 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <script src="../build/react.js"></script>
-    <script src="../build/react-dom.js"></script>
-    <script src="../build/browser.min.js"></script>
-  </head>
-  <body>
-    <div id="example"></div>
-    <script type="text/babel">
-      ReactDOM.render(
-        <h1>Hello, world!</h1>,
-        document.getElementById('example')
-      );
-    </script>
-  </body>
+    <head>
+        <script src="../build/react.js"></script>
+        <script src="../build/react-dom.js"></script>
+        <script src="../build/browser.min.js"></script>
+        <style>
+            .markdownArea{
+                display: flex;
+                
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/babel">
+        function Title(){
+            return <h1>React Markdown Previewer</h1>;
+        }
+
+        class MarkdownInput extends React.Component {
+            handleChange(event){
+                this.props.onMarkDownInputChange(event.target.value);
+            }
+            render(){
+                return (
+                    <p>
+                    <textarea
+                        value={this.props.message}
+                        onChange={this.handleChange}
+                    ></textarea>    
+                    </p>
+                );
+            }
+        }
+
+        class MarkdownPreviewer extends React.Component {
+            constructor(props){
+                super(props);
+                this.state = {
+                    message: null;
+                };
+            }
+
+            render(){
+            return (
+                <div className="container">
+                    <header><Title /></header>
+                    <div className="markdownArea">
+                        <div className="editor">
+                        
+                        </div>
+                        <div className="preview">
+                            <MarkdownView message={} />    
+                        </div>
+                    </div>
+                </div>
+            );
+            }
+        }
+        ReactDOM.render(
+            <MarkdownPreviewer />,
+            document.getElementById('root')
+        );
+        </script>
+    </body>
 </html>
